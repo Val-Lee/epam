@@ -80,7 +80,7 @@ class TestCalculator < Test::Unit::TestCase
   end
 
   def test_division4
-    assert_equal(0, Calculator.new.division(0,2))
+    assert_raise(ZeroDivisionError) {Calculator.new.division(2,0)}
   end
 
   def test_division5
