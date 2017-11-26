@@ -1,0 +1,118 @@
+Тест-кейс 1 
+1. зайти на сайт singaporeair.com
+2. выбрать откуда (Singapore)
+3. выбрать куда (Lisbon)
+4. выбрать дату (16.11.2017-22.11.2017)
+5. выбрать количество пассажиров(1)
+6. выбрать класс(Economy)
+7. выбрать тип поездки(Return)
+8. нажать кнопку Search
+ожидаемый результат (ОР): появляются доступные билеты, сортированные по стоимоти(сначала дешевые)
+
+--------------------------
+Тест-кейс 2
+1. зайти на сайт singaporeair.com
+2. выбрать из какого города или аэропорта(Singapore)
+3. выбрать куда (Milan)
+4. выбрать дату (14.11.17-14.11.17)
+5. выбрать количество пассажиров(1)
+6. выбрать класс(Economy)
+7. выбрать тип поездки(Return)
+9. нажать кноку Search
+ОР: Т.к. билетов на выбранную дату не найдено, появляется список доступных билетов на ближайшие дни
+
+
+--------------------------
+Тест-кейс 3
+1. зайти на сайт singaporeair.com
+2. выбрать откуда (Singapore)
+3. выбрать куда(Apia)
+4. выбрать дату(14.11.2017)
+5. выбрать количество пасссажтиров(2)
+6. выбрать класс(Business)
+8. выбрать тип поездки(One way)
+9. нажать кноку Search
+ОР: Т.к. билетов на выбранную дату не найдено,
+ появляется список доступных билетов на ближайшие дни
+
+
+--------------------------
+Тест-кейс 4
+1. зайти на сайт singaporeair.com
+2. выбрать откуда (Singapore)
+3. выбрать куда(Riga)
+4. выбрать дату(16.11.2017-23.11.2017)
+5. выбрать количество пасссажтиров(Adult:3 Child:1)
+6. выбрать класс(First/Suites)
+7. выбрать тип поездки(Return)
+8. нажать кнопку Search
+ОР: ошибка 'If your booking includes one or more 
+flights operated by our partner airline(s), you may
+only be able to book a maximum of 2 tickets in First Class;
+2 tickets in Business Class; or 4 tickets in
+Premium Economy / Economy Class. You can make multiple bookings
+if your travelling party includes more people than the maximum allowed for each transaction.'
+
+--------------------------
+Тест-кейс 5
+1. зайти на сайт singaporeair.com
+2. выбрать откуда (Singapore)
+3. выбрать куда(Beijing)
+4. выбрать дату(15.11.17)
+5. выбрать количество пасссажтиров(2)
+6. выбрать класс(Economy)
+7. выбрать тип поездки(One way)
+8. ставим галочку на пункте Flexible travel dates
+9. нажимаем кнопку Search
+ОР: появляются доступные билеты, сортированные по времени отправления
+
+--------------------------
+Тест-кейс 6
+1. зайти на сайт singaporeair.com
+2. нажимаем кнопку Multy-city/Stopovers
+3. учтанавливаем параметры для первого маршрута
+	-From: Moscow
+	-To: Riga
+	-Date: 23.11.2017
+4. нажимае кнопку add flight
+5. устанавливаем параметры для второго мрашрута
+	-From: Riga
+	-To: Venice
+	-Date:30.11.2017
+6. устанавливаем параметры для двух рейсов
+	-Class: Economy
+	-Adult 1
+	-Child 1
+7. нажимаем кнопку search
+ОР: error 'There are no flights and/or seats 
+available for the journey you've selected. 
+Change your selections or get in touch with 
+your local Singapore Airlines office.'
+
+--------------------------
+Тест-кейс 7
+1. зайти на сайт singaporeair.com
+2. нажимаем Redeem flights
+3. выбираем направление(Singapore-Adelaine)
+4. выбираем дату(16.11.2017)
+5. выбираем количество людей(6)
+6. направление (One way)
+7. Class- Economy
+8. выбрать тип поездки(One way)
+9. нажимаем Search
+ОР: появляется всплывающее окно с просьбой залогиниться
+
+--------------------------
+Тест-кейс 8
+1. зайти на сайт singaporeair.com
+2. выбираем вкладку Hotel
+3. задаем параметры
+	-City: Abu Dhabi
+	-DateFrom 16.11.2017
+	-DateTo: 25.11.2017
+	-Rooms: 3
+	-Adult:3
+	-Child: 1
+4. нажимаем search
+ОР: перенаправление на сайт Agoda.com  с доступными  местами в отелях, отели отсортированы по рейтингу
+
