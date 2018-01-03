@@ -82,7 +82,6 @@ if your travelling party includes more people than the maximum allowed for each 
 6. устанавливаем параметры для двух рейсов
 	-Class: Economy
 	-Adult 1
-	-Child 1
 7. нажимаем кнопку search
 ОР: error 'There are no flights and/or seats 
 available for the journey you've selected. 
@@ -95,7 +94,7 @@ your local Singapore Airlines office.'
 2. нажимаем Redeem flights
 3. выбираем направление(Singapore-Adelaine)
 4. выбираем дату(16.11.2017)
-5. выбираем количество людей(6)
+5. выбираем количество людей(1)
 6. направление (One way)
 7. Class- Economy
 8. выбрать тип поездки(One way)

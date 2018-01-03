@@ -46,6 +46,7 @@ RSpec.configure do |config|
     @driver.find_element(:id, 'city-travel-start-day').clear
     @driver.find_element(:id, 'city-travel-start-day').send_keys depart_date
     @driver.find_element(:id, 'city-travel-start-day').click
+    sleep(1)
     @driver.find_element(:id, 'city-travel-return-day').clear
     @driver.find_element(:id, 'city-travel-return-day').send_keys return_date
     @driver.find_element(:id, 'city-travel-return-day').click
@@ -110,7 +111,7 @@ RSpec.configure do |config|
   end
 
   def flexible_dates
-    checkbox = @driver.find_element(:xpath, "city-travel-checkbox-6")
+    checkbox = @driver.find_element(:xpath, "//*[@id='form-book-travel']/fieldset/div[2]/div/div[4]/div/fieldset/label")
     @driver.execute_script("arguments[0].scrollIntoView(true)", checkbox)
     checkbox.click
   end
