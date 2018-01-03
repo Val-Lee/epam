@@ -2,7 +2,6 @@ require 'selenium-webdriver'
 
 DEPART_DATE = (Time.now + 4*24*60*60).strftime('%d/%m/%Y')
 RETURN_DATE = (Time.now + 14*24*60*60).strftime('%d/%m/%Y')
-CLASSES = {:economy => 'Economy', :premium_economy => 'Premium Economy', :business => 'Business', :first => 'First / Suites'}
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -18,9 +17,10 @@ RSpec.configure do |config|
   def init
     @driver = Selenium::WebDriver.for :chrome
     @base_url = 'http://www.singaporeair.com/'
-    @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 60
     @driver.get(@base_url)
+    @depart_date = @driver.find_element(:xpath, '//*[@id="city-travel-start-day-2"]')
+
   end
 
   def direction(from, to)
@@ -63,15 +63,55 @@ RSpec.configure do |config|
     end
   end
 
-  def passangers_count
+  def passangers_count(adult, child, infant)
+    @driver.find_element(:id, "customSelect-1-combobox").click
+    sleep(1)
+    @adult = @driver.find_element :xpath, "//*[@id='customSelect-1-listbox']"
+    @adult_list = @adult.find_elements(:tag_name, "li")
+    @adult_list.each do |option1|
+      if option1.attribute("data-value") == adult.to_s
+        option1.click
+        break
+      end
+    end
+    sleep(1)
+    @driver.find_element(:id, "customSelect-2-combobox").click
+    @child = @driver.find_element :xpath, "//*[@id='customSelect-2-listbox']"
+    @child_list = @child.find_elements(:tag_name, "li")
 
+    @child_list.each do |option2|
+      if option2.attribute("data-value") == child.to_s
+        option2.click
+        break
+      end
+    end
+    sleep(1)
+
+    @driver.find_element(:id, "customSelect-3-combobox").click
+    @infant = @driver.find_element :xpath, "//*[@id='customSelect-3-listbox']"
+    @infant_list = @infant.find_elements(:tag_name, "li")
+    @infant_list.each do |option3|
+      if option3.attribute("data-value") == infant.to_s
+        option3.click
+        break
+      end
+    end
   end
 
   def search
+    sleep(2)
     @driver.find_element(:id, 'city-travel-input-2').click
   end
 
   def clear_popouts
-    @driver.find_element(:id, 'header').click
+    element = @driver.find_element(:xpath, '//*[@id="container"]/header')
+    @driver.action.move_to(element).perform
+    @driver.action.move_by(1, 1).click.perform
+  end
+
+  def flexible_dates
+    checkbox = @driver.find_element(:xpath, "city-travel-checkbox-6")
+    @driver.execute_script("arguments[0].scrollIntoView(true)", checkbox)
+    checkbox.click
   end
 end
