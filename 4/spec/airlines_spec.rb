@@ -8,21 +8,23 @@ describe 'singaporeair' do
   end
 
   after(:each) do
-    sleep 5
+    # sleep 5
     @driver.quit
   end
 
   it 'case 1' do
     direction('Singapore - SIN', 'Lisbon - LIS')
     set_dates(DEPART_DATE, RETURN_DATE)
+    clear_popouts
     search
-    list_of_fligths = @driver.find_element(:xpath, "//*[@id='main-inner']/div[2]/h2").text
+    list_of_fligths = @driver.find_element(:xpath, "//*[@id='main-inner']/div[3]/h2").text
     expect(list_of_fligths).to eq('Select flights')
   end
 
   it 'case 2' do
     direction('Singapore - SIN', 'Milan - MXP')
     set_dates(DEPART_DATE, DEPART_DATE)
+    clear_popouts
     search
     list_of_fligths = @driver.find_element(:xpath, "//*[@id='main-inner']/div[1]/h2").text
     expect(list_of_fligths).to eq('Select alternative date(s)')
@@ -96,7 +98,6 @@ describe 'singaporeair' do
     depart_date.clear
     depart_date.send_keys DEPART_DATE
     clear_popouts
-    sleep(2)
     from = @driver.find_element(:id, 'city1-1')
     from.clear
     from.send_keys 'Singapore - SIN'
@@ -106,16 +107,28 @@ describe 'singaporeair' do
     to.send_keys 'Adelaide, Australia (Adelaide Intl - ADL)'
     to.click
     clear_popouts
-    search
-    # list_of_fligths = @driver.find_element(:xpath, "//*[@id='main-inner']/div[2]/h2").text
-    # expect(list_of_fligths).to eq('Select flights')
+    sleep(2)
+    @driver.find_element(:name, '_eventId_loginForORB').click
+    sleep(5)
+    popout_window = @driver.find_element(:xpath, "//*[@id='kfLoginPopupHeader']/h2").text
+    expect(popout_window).to include('Log in')
   end
 
   it 'case 8' do
-    direction('Singapore - SIN', 'Lisbon - LIS')
-    set_dates
-    search
-    list_of_fligths = @driver.find_element(:xpath, "//*[@id='main-inner']/div[2]/h2").text
-    expect(list_of_fligths).to eq('Select flights')
+    @driver.find_element(:xpath, '//*[@id="travel-widget"]/div/div/div[1]/ul/li[2]/a/span[2]').click
+    destination = @driver.find_element(:id, 'hotel-1')
+    destination.clear
+    destination.send_keys 'Abu Dhabi, United Arab Emirates'
+    check_in = @driver.find_element(:id, 'hotel-travel-start-day')
+    check_in.clear
+    check_in.send_keys DEPART_DATE
+    check_out = @driver.find_element(:id, 'hotel-travel-return-day')
+    check_out.clear
+    check_out.send_keys RETURN_DATE
+    @driver.find_element(:id, 'hotel-search').click
+    sleep(5)
+    @driver.switch_to.window( @driver.window_handles.last )
+    url = @driver.current_url
+    expect(url).to include('www.agoda.com')
   end
 end

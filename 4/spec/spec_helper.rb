@@ -17,6 +17,7 @@ RSpec.configure do |config|
   def init
     @driver = Selenium::WebDriver.for :chrome
     @base_url = 'http://www.singaporeair.com/'
+    @accept_next_alert = true
     @driver.manage.timeouts.implicit_wait = 60
     @driver.get(@base_url)
     @depart_date = @driver.find_element(:xpath, '//*[@id="city-travel-start-day-2"]')

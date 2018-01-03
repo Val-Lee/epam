@@ -109,9 +109,9 @@ your local Singapore Airlines office.'
 	-City: Abu Dhabi
 	-DateFrom 16.11.2017
 	-DateTo: 25.11.2017
-	-Rooms: 3
-	-Adult:3
-	-Child: 1
+	-Rooms: 1
+	-Adult:2
+	-Child: 0
 4. нажимаем search
 ОР: перенаправление на сайт Agoda.com  с доступными  местами в отелях, отели отсортированы по рейтингу
 
