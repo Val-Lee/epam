@@ -35,7 +35,6 @@ RSpec.configure do |config|
 
   def set_type(type)
     if type == 'one-way'
-      # @driver.find_element(:id, 'city-radio-5').click
       one_way = @driver.find_element :xpath, "//*[@id='city-radio-5']"
       @driver.execute_script("arguments[0].scrollIntoView(true)", one_way)
       one_way.click

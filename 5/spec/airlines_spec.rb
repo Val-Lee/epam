@@ -8,7 +8,7 @@ describe 'singaporeair' do
   end
 
   after(:each) do
-    # sleep 5
+    sleep 5
     @driver.quit
   end
 
@@ -131,4 +131,25 @@ describe 'singaporeair' do
     url = @driver.current_url
     expect(url).to include('www.agoda.com')
   end
+
+    it 'case 9' do
+    @driver.find_element(:xpath, '//*[@id="travel-widget"]/div/div/div[1]/ul/li[3]/a/span[2]').click
+    city = @driver.find_element(:id, 'car-1')
+    city.clear
+    city.send_keys 'Singapore Changi International Airport(SIN), Singapore'
+    car_pickup = @driver.find_element(:id, 'car-pickup')
+    car_pickup.clear
+    car_pickup.send_keys DEPART_DATE
+    clear_popouts
+    car_dropoff = @driver.find_element(:id, 'car-dropoff')
+    car_dropoff.clear
+    car_dropoff.send_keys RETURN_DATE
+    clear_popouts
+    @driver.find_element(:id, 'car-search').click
+    @driver.switch_to.window( @driver.window_handles.last )
+    url = @driver.current_url
+    search_car = @driver.find_element(:xpath, "//*[@id='searchAgainTop']/div/h2").text
+    expect(search_car).to include('Search for Car Hire')
+  end
+
 end
